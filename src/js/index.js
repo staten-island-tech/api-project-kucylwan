@@ -9,6 +9,7 @@ const query = async function () {
     const data = await response.json();
     // console.log(data.results);
     // DOMSelectors.test.innerText = data.results[69].name;
+
     data.results.forEach((pokemon) => {
       DOMSelectors.grid.insertAdjacentHTML(
         "beforeend",
@@ -35,36 +36,17 @@ const query = async function () {
         </div>
       </div>
     </div>
--->
-    <!--  <div class="movie-card">
-      <div class="movie-card-front">
-        <img
-          src="https://image.tmdb.org/t/p/w300/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg"
-          alt=""
-          class="poster"
-        />
-      </div>
-      <div class="movie-card-back">
-        <h3 class="movie-card-header">The Dark Knight</h3>
-        <div class="score-box">
-          <p class="user-score">Community Score</p>
-          <p class="user-score">8.4</p>
-        </div>
 
-        <div class="release-box">
-          <p class="release-date">Released</p>
-          <p class="release-date">2020-06-12</p>
-        </div>
-
-        <div class="movie-genres">
-          <li class="movie-genre">Sci-Fi</li>
-          <li class="movie-genre">Fantasy</li>
-          <li class="movie-genre">Horror</li>
-        </div>
-      </div>
     </div>`
       );
     });
+
+    DOMSelectors.search.addEventListener("click", search);
+
+    function search() {
+      const input = DOMSelectors.input.value;
+      console.log(input);
+    }
   } catch (error) {
     console.log(error);
     alert("yabai");
@@ -83,3 +65,10 @@ query();
 7. get pokemon in egg group
 8. display 5 random pokemon in egg group
 */
+
+/*thinkthonks part 2
+-user inputs pokemon name, take that variable + match it with the list? how to find a property within array?
+-afterwards, grab the url + use that link to find the big boy information abt the mon
+-from big boy info grab picture + species (new variable)
+-use species variable to grab species data + egg group
+-use egg group data to grab other pokemon? */
