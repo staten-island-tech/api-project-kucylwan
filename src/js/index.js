@@ -4,8 +4,7 @@ import { genres } from "./genre";
 function search() {
   const input = DOMSelectors.input.value;
   console.log(input);
-  const getPokemon = async function (e) {
-    e.preventDefault();
+  const getPokemon = async function () {
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${input}`
@@ -49,6 +48,9 @@ function search() {
   };
   getPokemon();
 }
+
+DOMSelectors.search.addEventListener("click", search);
+return search;
 
 /* const query = async function () {
   try {
