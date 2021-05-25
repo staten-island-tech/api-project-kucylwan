@@ -49,8 +49,6 @@ function search() {
   getPokemon();
 }
 
-DOMSelectors.search.addEventListener("click", search);
-return search;
 /* const query = async function () {
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`);
