@@ -1,9 +1,25 @@
 import { DOMSelectors } from "./DOM";
 import { genres } from "./genre";
 
-const key = "YOURKEYHERE";
+function search() {
+  const input = DOMSelectors.input.value;
+  console.log(input);
+  const getPokemon = async function () {
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/${input}`);
+      const data = await response.json();
+      console.log(data.results);
+      // DOMSelectors.test.innerText = data.results[69].name;
+    } catch (error) {
+      console.log(error);
+      alert("yabai");
+    }
+  };
+  getPokemon();
+}
 
-const query = async function () {
+DOMSelectors.search.addEventListener("click", search);
+/* const query = async function () {
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`);
     const data = await response.json();
@@ -40,19 +56,12 @@ const query = async function () {
     </div>`
       );
     });
-
-    DOMSelectors.search.addEventListener("click", search);
-
-    function search() {
-      const input = DOMSelectors.input.value;
-      console.log(input);
-    }
   } catch (error) {
     console.log(error);
     alert("yabai");
   }
 };
-query();
+query(); */
 
 /* thinkthonk brain juice time
 1. get list of pokemon
