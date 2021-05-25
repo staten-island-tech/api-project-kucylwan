@@ -6,27 +6,13 @@ function search() {
   console.log(input);
   const getPokemon = async function () {
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/${input}`);
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/bulbasaur`
+      );
       const data = await response.json();
       console.log(data.results);
       // DOMSelectors.test.innerText = data.results[69].name;
-    } catch (error) {
-      console.log(error);
-      alert("yabai");
-    }
-  };
-  getPokemon();
-}
 
-DOMSelectors.search.addEventListener("click", search);
-/* const query = async function () {
-  try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=898`);
-    const data = await response.json();
-    // console.log(data.results);
-    // DOMSelectors.test.innerText = data.results[69].name;
-
-    data.results.forEach((pokemon) => {
       DOMSelectors.grid.insertAdjacentHTML(
         "beforeend",
         `<div class="poke-info">
@@ -36,7 +22,7 @@ DOMSelectors.search.addEventListener("click", search);
           alt=""
           class="poke-image"
         />
-        <h3 class="poke-header">${pokemon.name}</h3>
+        <h3 class="poke-header">${data.name}</h3>
         <div class="poke-text">
           <p class="egg-group">Egg Group</p>
           <p class="egg-group">Fairy</p>
@@ -55,7 +41,51 @@ DOMSelectors.search.addEventListener("click", search);
 
     </div>`
       );
-    });
+    } catch (error) {
+      console.log(error);
+      alert("yabai");
+    }
+  };
+  getPokemon();
+}
+
+DOMSelectors.search.addEventListener("click", search);
+return search;
+/* const query = async function () {
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`);
+    const data = await response.json();
+    // console.log(data.results);
+    // DOMSelectors.test.innerText = data.results[69].name;
+
+    DOMSelectors.grid.insertAdjacentHTML(
+      "beforeend",
+      `<div class="poke-info">
+      <div class="poke-profile">
+        <img
+          src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
+          alt=""
+          class="poke-image"
+        />
+        <h3 class="poke-header">${data.name}</h3>
+        <div class="poke-text">
+          <p class="egg-group">Egg Group</p>
+          <p class="egg-group">Fairy</p>
+        </div>
+
+        <div class="poke-egg-list">
+          <p class="egg-list">Possible breeding partners</p>
+          <li class="egg-list">Clefairy</li>
+          <li class="egg-list">Jigglypuff</li>
+          <li class="egg-list">Chansey</li>
+          <li class="egg-list">Marill</li>
+          <li class="egg-list">Mawile</li>
+        </div>
+      </div>
+    </div>
+
+    </div>`
+    );
   } catch (error) {
     console.log(error);
     alert("yabai");
