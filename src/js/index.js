@@ -7,7 +7,7 @@ function search() {
   const getPokemon = async function () {
     try {
       const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/bulbasaur`
+        `https://pokeapi.co/api/v2/pokemon/${input}`
       );
       const data = await response.json();
       console.log(data.results);
