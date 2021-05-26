@@ -1,8 +1,10 @@
 import { DOMSelectors } from "./DOM";
 import { genres } from "./genre";
 
+let input = "turtwig";
+
 function search() {
-  const input = DOMSelectors.input.value;
+  let input = DOMSelectors.input.value;
   console.log(input);
   const getPokemon = async function () {
     try {
@@ -49,50 +51,58 @@ function search() {
   getPokemon();
 }
 
-DOMSelectors.search.addEventListener("click", search);
-return search;
+DOMSelectors.input.addEventListener("submit", search);
 
-/* const query = async function () {
+const getPokemon = async function () {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/bulbasaur`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
     const data = await response.json();
-    // console.log(data.results);
-    // DOMSelectors.test.innerText = data.results[69].name;
 
-    DOMSelectors.grid.insertAdjacentHTML(
-      "beforeend",
-      `<div class="poke-info">
-      <div class="poke-profile">
-        <img
-          src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
-          alt=""
-          class="poke-image"
-        />
-        <h3 class="poke-header">${data.name}</h3>
-        <div class="poke-text">
-          <p class="egg-group">Egg Group</p>
-          <p class="egg-group">Fairy</p>
-        </div>
-
-        <div class="poke-egg-list">
-          <p class="egg-list">Possible breeding partners</p>
-          <li class="egg-list">Clefairy</li>
-          <li class="egg-list">Jigglypuff</li>
-          <li class="egg-list">Chansey</li>
-          <li class="egg-list">Marill</li>
-          <li class="egg-list">Mawile</li>
-        </div>
-      </div>
-    </div>
-
-    </div>`
-    );
+    const getEggGroup = async function () {
+      try {
+        const eggResponse = await fetch(
+          `https://pokeapi.co/api/v2/pokemon-species/${data.id}/`
+        );
+        const eggData = await eggResponse.json();
+        console.log(eggData);
+        DOMSelectors.grid.insertAdjacentHTML(
+          "beforeend",
+          `<div class="poke-info">
+        <div class="poke-profile">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png"
+            alt=""
+            class="poke-image"
+          />
+          <h3 class="poke-header">${data.name}</h3>
+          <div class="poke-text">
+            <p class="egg-group">Possible Egg Group</p>
+            <p class="egg-group">${eggData.egg_groups[0].name}</p>
+          </div>
+    
+          <div class="poke-egg-list">
+            <p class="egg-list">Possible breeding partners</p>
+`
+        );
+        const eggUrl = eggData.egg_groups[0].url;
+        const getBreedPartner = async function () {
+          try {
+            const breedResponse = await fetch(`${eggUrl}`);
+            const breedData = await breedResponse.json();
+            console.log(breedData.pokemon_species);
+            breedData.forEach((name) => console.log("hi"));
+          } catch (error) {}
+        };
+        getBreedPartner();
+      } catch (yabai) {}
+    };
+    getEggGroup();
   } catch (error) {
     console.log(error);
     alert("yabai");
   }
 };
-query(); */
+getPokemon();
 
 /* thinkthonk brain juice time
 1. get list of pokemon
@@ -112,3 +122,16 @@ query(); */
 -from big boy info grab picture + species (new variable)
 -use species variable to grab species data + egg group
 -use egg group data to grab other pokemon? */
+
+{
+  /* <li class="egg-list">Clefairy</li>
+<li class="egg-list">Jigglypuff</li>
+<li class="egg-list">Chansey</li>
+<li class="egg-list">Marill</li>
+<li class="egg-list">Mawile</li>
+</div>
+</div>
+</div>
+
+</div> */
+}
