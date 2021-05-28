@@ -1,4 +1,5 @@
 import { DOMSelectors } from "./DOM";
+import { validateForm } from "./form";
 
 var input = "";
 
