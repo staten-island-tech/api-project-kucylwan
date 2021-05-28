@@ -14,6 +14,7 @@ function pokeRefresh() {
 }
 
 function pokeSearch(event) {
+  validateForm();
   event.preventDefault();
   input = DOMSelectors.pokeInput.value.toLowerCase();
 
@@ -90,7 +91,10 @@ const getPokemon = async function () {
               } else {
               }
             });
-          } catch (error) {}
+          } catch (error) {
+            console.log(error);
+            alert("something went wrong ");
+          }
         };
         getBreedPartner();
       } catch (error) {
@@ -99,7 +103,10 @@ const getPokemon = async function () {
       }
     };
     getEggGroup();
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    alert("something went wrong ");
+  }
 };
 
 DOMSelectors.input.addEventListener("submit", pokeSearch);
