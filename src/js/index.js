@@ -3,7 +3,7 @@ import { DOMSelectors } from "./DOM";
 var input = "";
 
 function pokeSearch(event) {
-  input = "dialga";
+  input = DOMSelectors.input.value;
   event.preventDefault();
   getPokemon();
 }
