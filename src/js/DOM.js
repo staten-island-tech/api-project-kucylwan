@@ -1,6 +1,7 @@
 const DOMSelectors = {
   grid: document.querySelector(".poke-result"),
-  input: document.getElementById("poke-input"),
+  input: document.getElementById("input-form"),
+  submit: document.getElementById("poke-submit"),
 };
 
 export { DOMSelectors };

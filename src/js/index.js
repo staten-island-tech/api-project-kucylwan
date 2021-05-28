@@ -2,14 +2,10 @@ import { DOMSelectors } from "./DOM";
 
 var input = "turtwig";
 
-function init() {}
-
-init();
-
-DOMSelectors.input.addEventListener("submit", function (e) {
+/* DOMSelectors.input.addEventListener("submit", function (e) {
   log.textContent = `Form Submitted! Time stamp: ${e.timeStamp}`;
   e.preventDefault();
-});
+}); */
 
 const getPokemon = async function () {
   try {
@@ -96,4 +92,10 @@ const getPokemon = async function () {
     alert("yabai");
   }
 };
-getPokemon();
+
+function pokeSearch(event) {
+  console.log("hewwo");
+  event.preventDefault();
+  getPokemon();
+}
+DOMSelectors.input.addEventListener("submit", pokeSearch);
