@@ -1,11 +1,12 @@
 import { DOMSelectors } from "./DOM";
 
-var input = "turtwig";
+var input = "";
 
-/* DOMSelectors.input.addEventListener("submit", function (e) {
-  log.textContent = `Form Submitted! Time stamp: ${e.timeStamp}`;
-  e.preventDefault();
-}); */
+function pokeSearch(event) {
+  input = "dialga";
+  event.preventDefault();
+  getPokemon();
+}
 
 const getPokemon = async function () {
   try {
@@ -93,9 +94,4 @@ const getPokemon = async function () {
   }
 };
 
-function pokeSearch(event) {
-  console.log("hewwo");
-  event.preventDefault();
-  getPokemon();
-}
 DOMSelectors.input.addEventListener("submit", pokeSearch);
