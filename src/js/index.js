@@ -2,13 +2,20 @@ import { DOMSelectors } from "./DOM";
 
 var input = "";
 
-function pokeSearch(event) {
-  var inserted = document.getElementsByClassName("insert");
-  if (inserted.length > 0) {
-    inserted.remove();
+function pokeRefresh() {
+  const inserted = document.getElementsByClassName("insert");
+  const groups = document.getElementsByClassName("egg-group-name");
+  const partnerName = document.getElementsByClassName("egg-list");
+
+  while (inserted.length > 0) {
+    inserted[0].parentNode.removeChild(inserted[0]);
   }
-  input = DOMSelectors.pokeInput.value.toLowerCase();
+}
+
+function pokeSearch(event) {
   event.preventDefault();
+  input = DOMSelectors.pokeInput.value.toLowerCase();
+
   getPokemon();
 }
 
@@ -58,7 +65,7 @@ const getPokemon = async function () {
         DOMSelectors.grid.insertAdjacentHTML(
           "beforeend",
           ` <div class="poke-egg-list insert">
-          <p class="egg-list insert">Possible breeding partners</p>
+          <p class="egg-group insert">Other Pokemon in Egg Group</p>
 
 `
         );
@@ -95,3 +102,4 @@ const getPokemon = async function () {
 };
 
 DOMSelectors.input.addEventListener("submit", pokeSearch);
+DOMSelectors.submit.addEventListener("click", pokeRefresh);
