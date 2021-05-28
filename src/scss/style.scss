@@ -6,19 +6,32 @@ body {
   padding: 0;
   margin: 0;
   font-size: 62.5%;
-  color: white;
+  color: black;
   font-family: $font-main;
   font-weight: 500;
 }
 body {
-  background-color: #111;
+  background-color: white;
 }
 
 .header {
   font-size: 5.2rem;
 
-  margin: 3rem auto;
+  width: 100%;
+
   text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(237, 104, 213, 1) 0%,
+    rgba(233, 76, 131, 1) 49%,
+    rgba(235, 185, 122, 1) 100%
+  );
+  padding: 3rem;
+}
+
+.header-text {
+  color: white;
+  margin: 3rem auto;
 }
 .subheader {
   margin: 1rem auto 2rem auto;
