@@ -3,7 +3,11 @@ import { DOMSelectors } from "./DOM";
 var input = "";
 
 function pokeSearch(event) {
-  input = DOMSelectors.input.value;
+  var inserted = document.getElementsByClassName("insert");
+  if (inserted.length > 0) {
+    inserted.remove();
+  }
+  input = DOMSelectors.pokeInput.value.toLowerCase();
   event.preventDefault();
   getPokemon();
 }
@@ -23,16 +27,16 @@ const getPokemon = async function () {
 
         DOMSelectors.grid.insertAdjacentHTML(
           "beforeend",
-          `<div class="poke-info">
-        <div class="poke-profile">
+          `<div class="poke-info insert" >
+        <div class="poke-profile insert">
           <img
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png"
             alt=""
             class="poke-image"
           />
-          <h3 class="poke-header">${data.name}</h3>
-          <div class="poke-text">
-            <p class="egg-group">Possible Egg Groups</p>
+          <h3 class="poke-header insert">${data.name}</h3>
+          <div class="poke-text insert">
+            <p class="egg-group insert">Possible Egg Groups</p>
 
 `
         );
@@ -42,7 +46,7 @@ const getPokemon = async function () {
             DOMSelectors.grid.insertAdjacentHTML(
               "beforeend",
               `
-                <p class="egg-group-name">${eggData.egg_groups[groupNumber].name}</p>
+                <p class="egg-group-name insert">${eggData.egg_groups[groupNumber].name}</p>
               </div>
     `
             );
@@ -53,8 +57,8 @@ const getPokemon = async function () {
 
         DOMSelectors.grid.insertAdjacentHTML(
           "beforeend",
-          ` <div class="poke-egg-list">
-          <p class="egg-list">Possible breeding partners</p>
+          ` <div class="poke-egg-list insert">
+          <p class="egg-list insert">Possible breeding partners</p>
 
 `
         );
@@ -70,7 +74,7 @@ const getPokemon = async function () {
                 DOMSelectors.grid.insertAdjacentHTML(
                   "beforeend",
                   `
-                  <li class="egg-list">${breedData.pokemon_species[partnerNumber].name}</li>
+                  <li class="egg-list insert">${breedData.pokemon_species[partnerNumber].name}</li>
                   </div>
         `
                 );
@@ -78,20 +82,16 @@ const getPokemon = async function () {
               } else {
               }
             });
-          } catch (error) {
-            console.log(error);
-          }
+          } catch (error) {}
         };
         getBreedPartner();
       } catch (error) {
         console.log(error);
+        alert("something went wrong ");
       }
     };
     getEggGroup();
-  } catch (error) {
-    console.log(error);
-    alert("yabai");
-  }
+  } catch (error) {}
 };
 
 DOMSelectors.input.addEventListener("submit", pokeSearch);
