@@ -90,11 +90,15 @@ const getPokemon = async function () {
             const breedResponse = await fetch(`${eggUrl}`);
             const breedData = await breedResponse.json();
             console.log(breedData.pokemon_species);
-            breedData.forEach((name) => console.log("hi"));
-          } catch (error) {}
+            breedData.pokemon_species.forEach((name) => console.log(name));
+          } catch (error) {
+            console.log(error);
+          }
         };
         getBreedPartner();
-      } catch (yabai) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     getEggGroup();
   } catch (error) {
