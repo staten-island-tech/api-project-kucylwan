@@ -73,3 +73,22 @@ body {
 .delete {
   display: none;
 }
+
+.search-btn {
+  font-family: $font-main;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    rgba(237, 104, 213, 1) 0%,
+    rgba(233, 76, 131, 1) 49%,
+    rgba(235, 185, 122, 1) 100%
+  );
+  color: white;
+  padding: 1rem;
+  border-radius: 2rem;
+  transition: all 2s;
+}
+
+.input-box {
+  height: 3rem;
+}
