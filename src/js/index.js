@@ -1,9 +1,9 @@
 import { DOMSelectors } from "./DOM";
 import { genres } from "./genre";
 
-let input = "turtwig";
+let input = "oshawott";
 
-function search() {
+/* function search() {
   let input = DOMSelectors.input.value;
   console.log(input);
   const getPokemon = async function () {
@@ -49,9 +49,9 @@ function search() {
     }
   };
   getPokemon();
-}
+} */
 
-DOMSelectors.input.addEventListener("submit", search);
+//DOMSelectors.input.addEventListener("submit", search);
 
 const getPokemon = async function () {
   try {
@@ -64,7 +64,8 @@ const getPokemon = async function () {
           `https://pokeapi.co/api/v2/pokemon-species/${data.id}/`
         );
         const eggData = await eggResponse.json();
-        console.log(eggData);
+        var groupNumber = eggData.egg_groups.length - 1;
+
         DOMSelectors.grid.insertAdjacentHTML(
           "beforeend",
           `<div class="poke-info">
@@ -76,21 +77,54 @@ const getPokemon = async function () {
           />
           <h3 class="poke-header">${data.name}</h3>
           <div class="poke-text">
-            <p class="egg-group">Possible Egg Group</p>
-            <p class="egg-group">${eggData.egg_groups[0].name}</p>
-          </div>
-    
-          <div class="poke-egg-list">
-            <p class="egg-list">Possible breeding partners</p>
+            <p class="egg-group">Possible Egg Groups</p>
+
 `
         );
+
+        eggData.egg_groups.forEach((name) => {
+          if (groupNumber >= 0) {
+            DOMSelectors.grid.insertAdjacentHTML(
+              "beforeend",
+              `
+                <p class="egg-group-name">${eggData.egg_groups[groupNumber].name}</p>
+              </div>
+    `
+            );
+            groupNumber = groupNumber - 1;
+          } else {
+          }
+        });
+
+        DOMSelectors.grid.insertAdjacentHTML(
+          "beforeend",
+          ` <div class="poke-egg-list">
+          <p class="egg-list">Possible breeding partners</p>
+
+`
+        );
+
         const eggUrl = eggData.egg_groups[0].url;
         const getBreedPartner = async function () {
           try {
             const breedResponse = await fetch(`${eggUrl}`);
             const breedData = await breedResponse.json();
-            console.log(breedData.pokemon_species);
-            breedData.pokemon_species.forEach((name) => console.log(name));
+            var partnerNumber = breedData.pokemon_species.length - 1;
+            console.log(partnerNumber);
+            breedData.pokemon_species.forEach((name) => {
+              if (partnerNumber >= 0) {
+                console.log("poggers");
+                DOMSelectors.grid.insertAdjacentHTML(
+                  "beforeend",
+                  `
+                  <li class="egg-list">${breedData.pokemon_species[partnerNumber].name}</li>
+                  </div>
+        `
+                );
+                partnerNumber = partnerNumber - 1;
+              } else {
+              }
+            });
           } catch (error) {
             console.log(error);
           }
@@ -139,3 +173,24 @@ getPokemon();
 
 </div> */
 }
+
+/*
+            <p class="egg-group">${eggData.egg_groups[0].name}</p>
+          </div>
+    
+
+
+function eggGroupNumber() {
+  if (groupNumber >= 0) {
+    console.log("hi");
+    groupNumber = groupNumber - 1;
+  } else {
+    console.log("bye");
+  }
+}
+if (groupNumber >= 0) {
+  eggGroupNumber;
+} else {
+  console.log("bye");
+}
+ */
