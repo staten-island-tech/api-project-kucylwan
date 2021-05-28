@@ -93,19 +93,19 @@ const getPokemon = async function () {
             });
           } catch (error) {
             console.log(error);
-            alert("something went wrong ");
+            alert("Failed to fetch (Did you spell something wrong?");
           }
         };
         getBreedPartner();
       } catch (error) {
         console.log(error);
-        alert("something went wrong ");
+        //alert("Failed to fetch (Did you spell something wrong?");
       }
     };
     getEggGroup();
   } catch (error) {
     console.log(error);
-    alert("something went wrong ");
+    alert("Failed to fetch (Did you spell something wrong?");
   }
 };
 
